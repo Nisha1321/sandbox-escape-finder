@@ -1,12 +1,4 @@
-"""StaticAnalyzer: the public-facing class that orchestrates all detectors.
 
-scan(source_code) parses the source into an AST, then does ONE
-ast.walk(tree) pass, calling every enabled detector's .matches(node) on
-every node (the "single shared walk" design decision from our
-SubclassesTraversalDetector discussion). Every non-None Finding gets
-converted to a dict via .to_dict() and collected into the returned
-list[dict].
-"""
 from __future__ import annotations
 
 import ast

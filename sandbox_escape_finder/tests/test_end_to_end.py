@@ -1,8 +1,4 @@
-"""End-to-end test: the full seeded corpus against the REAL, unmodified
-RestrictedPython sandbox -- per the acceptance criteria ("the dynamic
-prober runs the full corpus against RestrictedPython safely... the
-report distinguishes statically-flagged vs. actually-escaping payloads").
-"""
+
 import sys
 sys.path.insert(0, "src")
 

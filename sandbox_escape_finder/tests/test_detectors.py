@@ -1,8 +1,4 @@
-"""Unit tests for the 5 static detectors -- each with a known positive
-and a known negative snippet, per the task's explicit acceptance
-criterion ("at least 5 technique classes are implemented with real
-positive/negative test cases").
-"""
+
 import sys
 sys.path.insert(0, "src")
 

@@ -1,9 +1,4 @@
-"""Oracle-correctness test using an intentionally-broken toy sandbox
-fixture that must be caught -- this is an explicit acceptance criterion
-in the task spec, distinct from testing whether the REAL RestrictedPython
-sandbox is secure. This file proves the ORACLE MECHANISM itself works
-correctly, using fake sandbox_exec implementations we control completely.
-"""
+
 import sys
 sys.path.insert(0, "src")
 
@@ -14,12 +9,7 @@ import os
 
 
 def broken_sandbox_exec(code: str, marker_value: str, timeout: float = 5.0) -> dict:
-    """A deliberately broken toy 'sandbox' that leaks the marker value on
-    every single call, regardless of what code was actually passed in --
-    simulating a sandbox with NO real protection at all. The oracle
-    should catch this every time, proving the marker-leak detection path
-    genuinely works and isn't just accidentally always returning False.
-    """
+
     return {
         "success": True,
         "result_repr": f"leaked: {marker_value}",
@@ -29,11 +19,7 @@ def broken_sandbox_exec(code: str, marker_value: str, timeout: float = 5.0) -> d
 
 
 def perfectly_safe_sandbox_exec(code: str, marker_value: str, timeout: float = 5.0) -> dict:
-    """A toy sandbox that never leaks anything and never touches
-    anything forbidden, regardless of input -- the oracle should report
-    NO escape for this every time, proving the oracle doesn't produce
-    false alarms on its own.
-    """
+
     return {
         "success": True,
         "result_repr": "42",
@@ -71,9 +57,7 @@ def test_oracle_stays_quiet_for_safe_sandbox():
 
 
 def test_oracle_catches_canary_file_tampering():
-    """A sandbox that doesn't report a marker leak, but DOES modify the
-    canary file directly -- proving the file-diff signal works
-    independently of what the sandbox self-reports."""
+
     canary_path = new_canary_path()
     marker_value = "unrelated-marker"
     pre_state = capture_pre_state(canary_path, marker_value)
