@@ -1,7 +1,4 @@
-"""Quickstart: runs both StaticAnalyzer and DynamicProber against
-RestrictedPython with the seeded payload corpus. This is the exact
-usage pattern from the task's required public API.
-"""
+
 from sandbox_escape_finder import StaticAnalyzer, DynamicProber
 from sandbox_escape_finder.dynamic.sandbox import sandbox_exec
 from sandbox_escape_finder.oracle.canary import oracle
